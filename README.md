@@ -49,6 +49,12 @@ This course provides a comprehensive introduction to data analytics using R. It 
 ## Getting Started
 
 1. Clone this repository to your local machine.
+
+```bash
+   git clone [https://github.com/danielmaangi/data_analysis_intro.git](https://github.com/danielmaangi/data_analysis_intro.git)
+   cd data_analysis_intro
+```
+   
 2. Install the required R packages (listed in the scripts).
 3. Open the R scripts in RStudio and follow along with the course materials.
 
@@ -65,3 +71,4 @@ Contributions are welcome! If you find any errors or have suggestions for improv
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
