@@ -51,7 +51,7 @@ This course provides a comprehensive introduction to data analytics using R. It 
 1. Clone this repository to your local machine.
 
 ```bash
-   git clone [https://github.com/danielmaangi/data_analysis_intro.git](https://github.com/danielmaangi/data_analysis_intro.git)
+   git clone https://github.com/danielmaangi/data_analysis_intro.git
    cd data_analysis_intro
 ```
    
