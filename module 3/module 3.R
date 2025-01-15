@@ -22,8 +22,7 @@
 #   - data.table
 
 # Datasets
-# https://www.kaggle.com/datasets/juicobowley/drake-lyrics
-# https://www.kaggle.com/datasets/austinkennell/excel-portfolio-project
+# https://www.kaggle.com/datasets/kmldas/hr-employee-data-descriptive-analytics
 
 # Notes:
 #   - This script is intended for beginners with little to no prior experience in data analytics.
@@ -36,19 +35,29 @@
 # ============================================================================
 
 # R provides powerful tools for importing data from various sources:
-# We will focus on the readr package
-
 ## Importing CSV Files
 ##----------------------------------------------------------------------------
 library(readr) # From tidyverse
-drake_data <- readr::read_csv("data/drake_data.csv")
-dim(drake_data)
+fit_data <- readr::read_csv("data/health_fitness_dataset.csv")
+dim(fit_data)
 
-## Importing text files
+# write / save in CSV fomart
+write.csv(fit_data, "output/health_fitness_dataset_output.csv")
+library(data.table)
+fwrite(fit_data, "output/health_fitness_dataset_output.csv")
+
+## Importing Excel files
 ##-----------------------------------------------------------------------------
-library(readr) # From tidyverse
-drake_lyrics <- readr::read_delim("data/drake_data.csv", delim = "\t")
-dim(drake_data)
+library(readxl) # From tidyverse
+employees <- read_excel("data/HR_Employee_Data.xlsx",
+                        sheet = "HR_Employee_Data")
+dim(employees)
+
+
+# Write/ Save in XLSX format
+library(openxlsx)
+write.xlsx(employees, "output/employees_output.xlsx")
+
 
 
 
