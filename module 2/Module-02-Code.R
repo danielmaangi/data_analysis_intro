@@ -1,6 +1,6 @@
 # Title: Introduction to Data Analytics Using R
 # Module: Basics of R Syntax
-# Author: Luiz Maangi
+# Author: Daniel Maangi
 # Date: 2025-01-13
 # Email: dmaangi@statbricks.com
 
