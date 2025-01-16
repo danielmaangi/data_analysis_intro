@@ -227,10 +227,10 @@ print(result)
 # 02-06: Data Structures
 # ============================================================================
 #   - Vectors: Atomic vectors and Lists
-#   - Arithmetic Operators
-#   - Comparison Operators
-#   - Logical Operators
-#   - Miscellaneous Operators.
+#   - Matrices
+#   - Arrays
+#   - Data Frames
+#   - Factors
 
 # ============================================================================
 # 03-01: Vectors: The most basic data structure
