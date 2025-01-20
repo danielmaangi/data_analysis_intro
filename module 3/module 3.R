@@ -57,7 +57,6 @@ dim(employees)
 # Write/ Save in XLSX format
 library(openxlsx)
 write.xlsx(employees, "output/employees_output.xlsx")
-
 ## Execution Time
 library(tictoc) # convenient for measuring execution time
 tic("Writing CSV with Base R: write.csv")
@@ -67,8 +66,6 @@ toc()
 tic("Writing CSV using data.table::fwrite()")
 fwrite(fit_data, "output/health_fitness_dataset_output.csv")
 toc()
-
-
 
 
 cola <- read_excel("data/Cola.xlsx",
@@ -92,14 +89,22 @@ glimpse(fit_data)
 
 # Filtering and Selecting Data
 #------------------------------------------------------------
-# Select the firt 10 records of the dataset
-first10 <- fit_data %>%
+# Select the first 10 records of the dataset
+first10 <- fit_data |> # %>%
   slice(1:10)
+
+first100_120 <- fit_data |> # %>%
+  slice(100:120)
 
 # Find all records for participant with participant_id 5
 library(dplyr)
 participant_5_data <- fit_data %>%
   filter(participant_id == 5)
+
+participants_5_10 <- fit_data %>%
+  filter(participant_id %in% c(5, 10) &
+         gender == "F") %>%
+  select(participant_id, gender)
 
 
 # Select only the date, activity_type, duration_minutes, and calories_burned columns:
@@ -107,12 +112,23 @@ participant_5_data <- fit_data %>%
 activity_summary <- fit_data %>%
   select(date, activity_type, duration_minutes, calories_burned)
 
+activity_summary
+
+# Select only 3 columns (age, bmi, gender, date)
+# filter where date is greater than 2024-01-10
+age_bmi_gender <- fit_data %>%
+  select(age, bmi, gender, date) %>%
+  filter(date > '2024-01-10')
+
+age_bmi_gender
 
 # Find all records where activity_type is "Swimming" and intensity is "High":
 high_intensity_swimming <- fit_data %>%
   filter(activity_type == "Swimming" & intensity == "High")
 
-
+high_intensity_swimming %>%
+  select(activity_type, intensity) %>%
+  distinct()
 
 # 2. Arranging and Mutating Data
 #=========================================================================
@@ -134,12 +150,28 @@ fit_data <- fit_data %>%
     bmi >= 30 ~ "Obese"
   ))
 
+## ------- Quick summaries
+fit_data %>%
+  group_by(bmi_category) %>%
+  tally()
+
+library(janitor)
+fit_data %>%
+  tabyl(bmi_category)
+
+
+library(sjmisc)
+frq(fit_data$bmi_category)
+
+
+
 
 # 3. Grouping and Summarizing
 # Calculate the average calories_burned for each activity_type:
 fit_data %>%
   group_by(activity_type) %>%
-  summarize(avg_calories = mean(calories_burned, na.rm = TRUE))
+  summarize(avg_calories = mean(calories_burned, na.rm = TRUE)) %>%
+  arrange(desc(avg_calories))
 
 
 # Calculate the total duration_minutes for each participant_id for each intensity level:
